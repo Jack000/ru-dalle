@@ -16,8 +16,8 @@ from PIL import Image
 from . import utils
 
 
-def generate_images(text, tokenizer, dalle, vae, top_k, top_p, images_num, image_prompts=None, temperature=1.0, bs=8,
-                    seed=None, use_cache=True):
+def generate_images(text, tokenizer, dalle, vae, top_k, top_p, images_num, image_prompts=None, temperature=1.0, bs=4,
+                    seed=None, use_cache=True, return_codes=False):
     # TODO docstring
     if seed is not None:
         utils.seed_everything(seed)
@@ -30,7 +30,7 @@ def generate_images(text, tokenizer, dalle, vae, top_k, top_p, images_num, image
 
     text = text.lower().strip()
     input_ids = tokenizer.encode_text(text, text_seq_length=text_seq_length)
-    pil_images, scores = [], []
+    pil_images, scores, codes = [], [], []
     for chunk in more_itertools.chunked(range(images_num), bs):
         chunk_bs = len(chunk)
         with torch.no_grad():
@@ -59,8 +59,12 @@ def generate_images(text, tokenizer, dalle, vae, top_k, top_p, images_num, image
             images = vae.decode(codebooks)
             pil_images += utils.torch_tensors_to_pil_list(images)
             scores += torch.cat(sample_scores).sum(0).detach().cpu().numpy().tolist()
-    return pil_images, scores
+            for j in range(codebooks.shape[0]):
+                codes.append(codebooks[j].detach().cpu().numpy())
 
+    if return_codes:
+        return pil_images, scores, codes
+    return pil_images, scores
 
 def super_resolution(pil_images, realesrgan, batch_size=4):
     result = []

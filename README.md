@@ -1,6 +1,12 @@
 # ruDALL-E diffusion
 
-ruDALL-E diffusion is regular ruDALL-E with a diffusion decoder, similar to [dall-3](https://github.com/Jack000/DALLE-pytorch/)
+try it out on colab 
+<a href="https://colab.research.google.com/drive/1fXNfS2-ojRc6l4Rqg4rykFbPNSPvimZZ?usp=sharing">
+    <img alt="ru-dalle-diffusion colab link" src="https://colab.research.google.com/assets/colab-badge.svg">
+</a>
+
+ruDALL-E diffusion is ruDALL-E with a diffusion decoder, similar to [dall-3](https://github.com/Jack000/DALLE-pytorch/)
+
 Decoding VQ embeddings with a DDPM model can produce much more realistic fine-grain details than VQVAE and VQGAN.
 
 the only code change to ruDALL-E is to return the image tokens in generate_images() - the actual diffusion model is here: https://github.com/Jack000/guided-diffusion

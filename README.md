@@ -1,20 +1,22 @@
 # ruDALL-E diffusion
 
-ruDALL-E diffusion is regular ruDALL-E with a diffusion decoder, similar to [dall-3](https://github.com/Jack000/DALLE-pytorch/) Decoding VQ embeddings with a DDPM model can produce much more realistic fine-grain details than VQVAE and VQGAN.
+ruDALL-E diffusion is regular ruDALL-E with a diffusion decoder, similar to [dall-3](https://github.com/Jack000/DALLE-pytorch/)
+Decoding VQ embeddings with a DDPM model can produce much more realistic fine-grain details than VQVAE and VQGAN.
 
 the only code change to ruDALL-E is to return the image tokens in generate_images() - the actual diffusion model is here: https://github.com/Jack000/guided-diffusion
 
 # Samples
-| ruDALL-E | real-ESRGAN | diffusion |
-| --- | --- | --- |
-| <img src="./pics/cat-ru.png" width="256"></img> | <img src="./pics/cat-gan.png" width="256"></img> | <img src="./pics/cat-diffusion.png" width="256"></img> |
-| <img src="./pics/woman-ru.png" width="256"></img> | <img src="./pics/woman-gan.png" width="256"></img> | <img src="./pics/woman-diffusion.png" width="256"></img> |
-| <img src="./pics/avocado-ru.png" width="256"></img> | <img src="./pics/avocado-gan.png" width="256"></img> | <img src="./pics/avocado-diffusion.png" width="256"></img> |
-| <img src="./pics/cathedral-ru.png" width="256"></img> | <img src="./pics/cathedral-gan.png" width="256"></img> | <img src="./pics/cathedral-diffusion.png" width="256"></img> |
+| ruDALL-E + real-ESRGAN | diffusion |
+| --- | --- |
+| <img src="./pics/cat-gan.png" width="512"></img> | <img src="./pics/cat-diffusion.png" width="512"></img> |
+| <img src="./pics/woman-gan.png" width="512"></img> | <img src="./pics/woman-diffusion.png" width="512"></img> |
+| <img src="./pics/avocado-gan.png" width="512"></img> | <img src="./pics/avocado-diffusion.png" width="512"></img> |
+| <img src="./pics/cathedral-gan.png" width="512"></img> | <img src="./pics/cathedral-diffusion.png" width="512"></img> |
 
 note that the results depend a lot on the seed value
 
-base image: <img src="./pics/man-ru.png"></img>
+base image:
+<img src="./pics/man-ru.png"></img>
 
 diffusion-generated samples (different seeds):
 | &nbsp; | &nbsp; | &nbsp; |
